@@ -13,10 +13,10 @@ import com.lsh.bolt.WordCounter;
 import com.lsh.bolt.WordNormalizer;
 
 /**
- * Ö÷²âÊÔÀà
+ * ä¸»æµ‹è¯•ç±»
  * @author Luoshuhong
  * @Company  
- * 2015Äê5ÔÂ29ÈÕ
+ * 2015å¹´5æœˆ29æ—¥
  *
  */
 public class TopologyMain {
@@ -24,36 +24,36 @@ public class TopologyMain {
          
         //Topology definition
 		TopologyBuilder builder = new TopologyBuilder();
-		builder.setSpout("word-reader",new WordReader(), 2); //.setNumTasks(2); //ÉèÖÃtaskÊıÁ¿  ²»ÉèÖÃÊÇÄ¬ÈÏ=executor
-		//word-reader Ò»¸ö×é   ËùÓĞtuple»á±»Ëæ»úµÄ·Ö·¢¸øbolt×éÀïµÄ task
-		//shuffle Grouping ±íÊ¾Ëæ»ú·¢ËÍ ¸øÒ»¸ö¿ÉÓÃµÄ bolt
-		//fields grouping ±íÊ¾ÏàÍ¬µÄ tuple »á·¢ËÍ¸øÍ¬Ò»¸ötask
+		builder.setSpout("word-reader",new WordReader(), 2); //.setNumTasks(2); //è®¾ç½®taskæ•°é‡  ä¸è®¾ç½®æ˜¯é»˜è®¤=executor
+		//word-reader ä¸€ä¸ªç»„   æ‰€æœ‰tupleä¼šè¢«éšæœºçš„åˆ†å‘ç»™boltç»„é‡Œçš„ task
+		//shuffle Grouping è¡¨ç¤ºéšæœºå‘é€ ç»™ä¸€ä¸ªå¯ç”¨çš„ bolt
+		//fields grouping è¡¨ç¤ºç›¸åŒçš„ tuple ä¼šå‘é€ç»™åŒä¸€ä¸ªtask
 		builder.setBolt("word-normalizer", new WordNormalizer(), 6)
 			.shuffleGrouping("word-reader"); 
-		builder.setBolt("word-counter", new WordCounter(),4)  //1±íÊ¾executor  ²¢·¢Êı
+		builder.setBolt("word-counter", new WordCounter(),4)  //1è¡¨ç¤ºexecutor  å¹¶å‘æ•°
 			.fieldsGrouping("word-normalizer", new Fields("word"));
 		
         //Configuration
 		Config conf = new Config();
-//		conf.put("wordsFile", "D:/Ñ§Ï°/storm/words.txt");
+//		conf.put("wordsFile", "D:/å­¦ä¹ /storm/words.txt");
 //		conf.setNumWorkers(3);
-		conf.setMessageTimeoutSecs(20);  //Ò»¸ötuple´¦Àí³¬Ê±Ê±¼ä  ÔÚ¸ÃÊ±¼äÄÚÃ»ÓĞ´¦ÀíÍê ÔòÈÏÎª´¦ÀíÊ§°Ü
-		//ÉèÖÃ ackerµÄÊıÁ¿  ´Ë²ÎÊıÉèÖÃÎª0 storm»áÔÚspout·¢ÉäÒ»¸ötupleÖ®ºóÂíÉÏµ÷ÓÃspoutµÄack·½·¨ Èç¹û²»ÔÚÒâÊ§°Üºó»áËğÊ§Êı¾İ ¿ÉÒÔÕâÑù×ö
+		conf.setMessageTimeoutSecs(20);  //ä¸€ä¸ªtupleå¤„ç†è¶…æ—¶æ—¶é—´  åœ¨è¯¥æ—¶é—´å†…æ²¡æœ‰å¤„ç†å®Œ åˆ™è®¤ä¸ºå¤„ç†å¤±è´¥
+		//è®¾ç½® ackerçš„æ•°é‡  æ­¤å‚æ•°è®¾ç½®ä¸º0 stormä¼šåœ¨spoutå‘å°„ä¸€ä¸ªtupleä¹‹åé©¬ä¸Šè°ƒç”¨spoutçš„ackæ–¹æ³• å¦‚æœä¸åœ¨æ„å¤±è´¥åä¼šæŸå¤±æ•°æ® å¯ä»¥è¿™æ ·åš
 		conf.setNumAckers(5);  
-		//topologyÀïÃæ¸÷¸ö×é¼ş(spout, bolt)Éè¶¨Ò»¸öÏß³ÌÊıÁ¿ÉÏÏŞ¡£Ò»°ãÀ´ËµÉú³É»·¾³µÄÕâ¸öÅäÖÃºÜ´ó(100×óÓÒ), ¶øÕâ¶ÔÓÚ±¾µØ²âÊÔÀ´ËµÌ«´óÁË£¬ Õâ¸öÅäÖÃ¿ÉÒÔÈÃÄã°ÑËüµ÷Ğ¡
+		//topologyé‡Œé¢å„ä¸ªç»„ä»¶(spout, bolt)è®¾å®šä¸€ä¸ªçº¿ç¨‹æ•°é‡ä¸Šé™ã€‚ä¸€èˆ¬æ¥è¯´ç”Ÿæˆç¯å¢ƒçš„è¿™ä¸ªé…ç½®å¾ˆå¤§(100å·¦å³), è€Œè¿™å¯¹äºæœ¬åœ°æµ‹è¯•æ¥è¯´å¤ªå¤§äº†ï¼Œ è¿™ä¸ªé…ç½®å¯ä»¥è®©ä½ æŠŠå®ƒè°ƒå°
 //		conf.setMaxTaskParallelism(10);
-//		conf.put(Config.TOPOLOGY_MAX_TASK_PARALLELISM, 10);  //Ğ§¹ûÍ¬ÉÏ
+//		conf.put(Config.TOPOLOGY_MAX_TASK_PARALLELISM, 10);  //æ•ˆæœåŒä¸Š
 		
-//		conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1); //Ïß³ÌÊı 
-//		conf.setMaxSpoutPending(1);    //Ïß³ÌÊı
+//		conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1); //çº¿ç¨‹æ•° 
+//		conf.setMaxSpoutPending(1);    //çº¿ç¨‹æ•°
 		
 //		conf.setDebug(false);
 		conf.setDebug(true);
 		
-		//Ô¶³ÌÌá½»
+		//è¿œç¨‹æäº¤
 		if (args != null && args.length > 0) {
 	      try {
-	    	  conf.setNumWorkers(8); //ÉèÖÃtopology workerÊı
+	    	  conf.setNumWorkers(8); //è®¾ç½®topology workeræ•°
 	    	  StormSubmitter.submitTopology(args[0], conf, builder.createTopology());
 			} catch (AlreadyAliveException e) {
 				e.printStackTrace();
@@ -61,7 +61,7 @@ public class TopologyMain {
 				e.printStackTrace();
 			}
 	    } else {
-	        //±¾µØÄ£Ê½
+	        //æœ¬åœ°æ¨¡å¼
 	    	conf.setMaxTaskParallelism(3);
 			LocalCluster cluster = new LocalCluster();
 			cluster.submitTopology("word_count_test_lsh", conf, builder.createTopology());

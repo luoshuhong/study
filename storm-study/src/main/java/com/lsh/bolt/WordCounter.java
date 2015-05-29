@@ -13,10 +13,10 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Tuple;
 
 /**
- * Í³¼Æµ¥´ÊÊıÁ¿ count Bolt
+ * ç»Ÿè®¡å•è¯æ•°é‡ count Bolt
  * @author Luoshuhong
  * @Company  
- * 2015Äê5ÔÂ5ÈÕ
+ * 2015å¹´5æœˆ5æ—¥
  *
  */
 public class WordCounter extends BaseBasicBolt {

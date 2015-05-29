@@ -21,7 +21,7 @@ public class WordReader extends BaseRichSpout {
 	private boolean completed = false;
 	
 	/**
-	 * Ò»¸ö tuple ´¦Àí³É¹¦ºó»áµ÷ÓÃ¸Ã·½·¨ 
+	 * ä¸€ä¸ª tuple å¤„ç†æˆåŠŸåä¼šè°ƒç”¨è¯¥æ–¹æ³• 
 	 */
 	public void ack(Object msgId) {
 		System.out.println("OK:"+msgId);
@@ -29,7 +29,7 @@ public class WordReader extends BaseRichSpout {
 	public void close() {}
 	
 	/**
-	 * Ò»¸ötuple ´¦ÀíÊ§°Üºó»áµ÷ÓÃ´Ë·½·¨
+	 * ä¸€ä¸ªtuple å¤„ç†å¤±è´¥åä¼šè°ƒç”¨æ­¤æ–¹æ³•
 	 */
 	public void fail(Object msgId) {
 		System.out.println("FAIL:"+msgId);
@@ -60,15 +60,15 @@ public class WordReader extends BaseRichSpout {
 //			while((str = reader.readLine()) != null){
 //				
 //				/**
-//				 * ÕâÀï½« strÄÚÈİ×÷Îª msgId ¸ù¾İ¸ÃidÀ´×·×Ù¾ßÌåtuple
+//				 * è¿™é‡Œå°† strå†…å®¹ä½œä¸º msgId æ ¹æ®è¯¥idæ¥è¿½è¸ªå…·ä½“tuple
 //				 * 
-//				 *  ·¢ÉäµÄtuple±»´«ËÍµ½ÏûÏ¢´¦ÀíÕßboltÄÇÀï£¬ 
-//				 *  storm»á¸ú×ÙÓÉ´ËËù²úÉúµÄÕâ¿ÎtupleÊ÷¡£Èç¹ûstorm¼ì²âµ½Ò»¸ötuple±»ÍêÈ«´¦ÀíÁË£¬
-//				 *  ÄÇÃ´storm»áÒÔ×î¿ªÊ¼µÄÄÇ¸ömessage-id×÷Îª²ÎÊıÈ¥µ÷ÓÃÏûÏ¢Ô´µÄack·½·¨£»
-//				 *  ·´Ö®storm»áµ÷ÓÃspoutµÄfail·½·¨¡£
-//				 *  ÖµµÃ×¢ÒâµÄÒ»µãÊÇ£¬ stormµ÷ÓÃack»òÕßfailµÄtaskÊ¼ÖÕÊÇ²úÉúÕâ¸ötupleµÄÄÇ¸ötask¡£
-//				 *  ËùÒÔÈç¹ûÒ»¸öspout±»·Ö³ÉºÜ¶à¸ötaskÀ´Ö´ĞĞ£¬ 
-//				 *  ÏûÏ¢Ö´ĞĞµÄ³É¹¦Ê§°ÜÓë·ñÊ¼ÖÕ»áÍ¨Öª×î¿ªÊ¼·¢³ötupleµÄÄÇ¸ötask
+//				 *  å‘å°„çš„tupleè¢«ä¼ é€åˆ°æ¶ˆæ¯å¤„ç†è€…bolté‚£é‡Œï¼Œ 
+//				 *  stormä¼šè·Ÿè¸ªç”±æ­¤æ‰€äº§ç”Ÿçš„è¿™è¯¾tupleæ ‘ã€‚å¦‚æœstormæ£€æµ‹åˆ°ä¸€ä¸ªtupleè¢«å®Œå…¨å¤„ç†äº†ï¼Œ
+//				 *  é‚£ä¹ˆstormä¼šä»¥æœ€å¼€å§‹çš„é‚£ä¸ªmessage-idä½œä¸ºå‚æ•°å»è°ƒç”¨æ¶ˆæ¯æºçš„ackæ–¹æ³•ï¼›
+//				 *  åä¹‹stormä¼šè°ƒç”¨spoutçš„failæ–¹æ³•ã€‚
+//				 *  å€¼å¾—æ³¨æ„çš„ä¸€ç‚¹æ˜¯ï¼Œ stormè°ƒç”¨ackæˆ–è€…failçš„taskå§‹ç»ˆæ˜¯äº§ç”Ÿè¿™ä¸ªtupleçš„é‚£ä¸ªtaskã€‚
+//				 *  æ‰€ä»¥å¦‚æœä¸€ä¸ªspoutè¢«åˆ†æˆå¾ˆå¤šä¸ªtaskæ¥æ‰§è¡Œï¼Œ 
+//				 *  æ¶ˆæ¯æ‰§è¡Œçš„æˆåŠŸå¤±è´¥ä¸å¦å§‹ç»ˆä¼šé€šçŸ¥æœ€å¼€å§‹å‘å‡ºtupleçš„é‚£ä¸ªtask
 //				 */
 //				this.collector.emit(new Values(str),str);
 //			}

@@ -12,10 +12,10 @@ import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 
 /**
- * ¸ºÔğ²ğ·Ö¾ä×Ó
+ * è´Ÿè´£æ‹†åˆ†å¥å­
  * @author Luoshuhong
  * @Company  
- * 2015Äê5ÔÂ29ÈÕ
+ * 2015å¹´5æœˆ29æ—¥
  *
  */
 public class WordNormalizer extends BaseBasicBolt {
@@ -42,7 +42,7 @@ public class WordNormalizer extends BaseBasicBolt {
                 word = word.toLowerCase();
                 collector.emit(new Values(word));
                 
-                //Èç¹ûÊ§°Ü ¿ÉÒÔÖ±½Óµ÷ÓÃfail·½·¨  ÕâÑù¿ÉÒÔ°Ú¿ìËÙÖØĞÂ´¦Àí
+                //å¦‚æœå¤±è´¥ å¯ä»¥ç›´æ¥è°ƒç”¨failæ–¹æ³•  è¿™æ ·å¯ä»¥æ‘†å¿«é€Ÿé‡æ–°å¤„ç†
                 //collector.getOutputter().fail(input);
             }
         }
@@ -52,6 +52,6 @@ public class WordNormalizer extends BaseBasicBolt {
 	 * The bolt will only emit the field "word" 
 	 */
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("word"));  //¶¨ÒåÊä³öµÄ×Ö¶Î
+		declarer.declare(new Fields("word"));  //å®šä¹‰è¾“å‡ºçš„å­—æ®µ
 	}
 }

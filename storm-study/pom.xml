@@ -8,7 +8,7 @@
   <artifactId>storm-study</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>teststorm</name>
+  <name>storm-study</name>
 	
   <build>
    <plugins>
