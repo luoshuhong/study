@@ -68,7 +68,7 @@
   										[3.2,)
   									</versionRange>
   									<goals>
-  										<goal>descriptor</goal>
+  										<goal>descriptor</goal>   
   									</goals>
   								</pluginExecutionFilter>
   								<action>
