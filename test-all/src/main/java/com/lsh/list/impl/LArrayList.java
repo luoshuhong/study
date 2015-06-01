@@ -1,6 +1,6 @@
 package com.lsh.list.impl;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import com.lsh.list.inter.ILCollection;
@@ -8,7 +8,38 @@ import com.lsh.list.inter.ILList;
 
 public class LArrayList<T> implements ILList<T> {
 //	ArrayList<E>
-	int capacity = 10; // 默认大小
+	private static final int DEFAULT_CAPACITY = 10; 				 // 默认大小
+	private static final Object[] EMPTY_DATA = new Object[]{}; //
+	
+	private int size;
+	private Object[] data;
+	
+	public LArrayList() {
+		this.data = EMPTY_DATA;
+		size = 0;
+	}
+	
+	public LArrayList(int capacity) {
+		if (capacity <= 0) {
+			return ;
+		}
+		
+		data = new Object[capacity];
+		size = 0;
+		
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				
+			}
+		}).start();
+		
+	}
+	
+	
+	private void ensureCapacityInternal(int size) {
+	}
+	
 	
 	/********************* ********************/
 	@Override
