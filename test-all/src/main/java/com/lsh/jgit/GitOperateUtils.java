@@ -128,7 +128,7 @@ public class GitOperateUtils {
 	public static void clone(String remoteGitUrl,String localGitDir, String userName, String password) {
         try {
 			Git.cloneRepository()
-				.setURI(remoteGitUrl)
+				.setURI(remoteGitUrl)//.setBranch("")//这里可以指定切换到某个分支
 				.setDirectory(new File(localGitDir))
 				.setCredentialsProvider(new UsernamePasswordCredentialsProvider(userName, password)).call();
 		} catch (Exception e) {
