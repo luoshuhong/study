@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="C:\Users\lenovo\.m2\repository\mysql\mysql-connector-java\5.1.17\mysql-connector-java-5.1.17.jar" />
+    <context id="tuan_ad" targetRuntime="MyBatis3" introspectedColumnImpl="com.tuan800.mybatis.generator.api.IntrospectedColumn">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.10.100:3306/trade?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
+                        userId="trade_test"
+                        password="P73wfHu4eZhmg89wq">
+        </jdbcConnection>
+
+        <javaTypeResolver type="com.tuan800.mybatis.generator.types.JavaTypeResolverImpl">
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.zhe800.quartz.model.pojo" targetProject="E:\ZheWorkspace\testmav\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mybatis.sqlmap.quartz" targetProject="E:\ZheWorkspace\testmav\src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="MIXEDMAPPER" targetPackage="com.zhe800.quartz.model.mapper" targetProject="E:\ZheWorkspace\testmav\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <table tableName="tb_withdrawals" schema="trade">
+        	<generatedKey column="serial_number" sqlStatement="MySql" identity="true" />
+        </table>
+        <!-- 
+        <table tableName="tb_product" schema="trade">
+        	<generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+		<table tableName="tb_promotion" schema="trade">
+        	<generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+		 -->
+    </context>
+</generatorConfiguration>
