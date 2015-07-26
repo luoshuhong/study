@@ -14,38 +14,20 @@
                            	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
        default-autowire="byName">
 
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+<!--     <aop:aspectj-autoproxy proxy-target-class="true"/> -->
 
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-            </list>
-        </property>
-    </bean>
-<!--     <bean class="com.zhe800.shell.RestletServer" port="12345" base-package="com.zhe800"> -->
-          
-    <!-- http-shell 启动配置 -->
-<!--     <bean class="com.zhe800.shell.RestletServer" init-method="init"> -->
-<!--     	<property name="port" value="33333" /> -->
-<!--     	<property name="servName" value="testannotation" /> -->
-<!--     	<property name="serverList" value="#{configManager.getConfigValue('trade_public_zookeeper','zk01')}"/> -->
-<!--     	<property name="classPath" value="com.lsh.testmav.restlet.TestAnnotationTask"/> -->
-<!--     	<property name="endpointMap">  -->
-<!-- 			<map> -->
-<!-- 				<entry key="/testa" value="com.lsh.testmav.restlet.TestAResource"/> -->
-<!-- 				<entry key="/testb" value="com.lsh.testmav.restlet.TestBResource"/> -->
-<!-- 			</map> -->
-<!-- 		</property> -->
+<!--     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!--         <property name="locations"> -->
+<!--             <list> -->
+<!--             </list> -->
+<!--         </property> -->
 <!--     </bean> -->
     
-    <!-- http-shell 启动配置 -->
     <bean class="com.zhe800.shell.RestletServer" init-method="init">
-    	<!-- http-shell使用端口号 -->
-    	<property name="port" value="33333" />
-    	<!-- 应用名称 -->
-    	<property name="servName" value="testannotation" />
-    	<!-- zk地址 应保持与imago使用一致 上线时 需要注释掉 -->
-    	<property name="serverList" value="192.168.10.66:2181,192.168.10.57:2181,192.168.10.58:2181"/>
+        <property name="port" value="33333" />
+        <property name="serverList" value="#{configManager.getConfigValue('trade_public_zookeeper','zk02')}"/>
+        <property name="servName" value="testannotation" />
+        <property name="basePackage" value="com.lsh.httpshell" />
+        <property name="sign" value="false"/>
     </bean>
-    
 </beans>

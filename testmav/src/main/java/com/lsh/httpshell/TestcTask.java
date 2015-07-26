@@ -12,6 +12,12 @@ import com.zhe800.shell.AbstractResource;
 public class TestcTask extends AbstractResource {
 	@Override
 	public String deal(String data) {  
+		System.out.println("----- TestcTask start ....");
+		try {
+			Thread.sleep(5 * 60 * 1000);  //5分钟
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		return result(0,"C success");
 	}
 }
