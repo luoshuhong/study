@@ -59,8 +59,8 @@ public class HttpUtils {
             httpConn.setUseCaches(false);
             httpConn.setDoInput(true);
             HttpURLConnection.setFollowRedirects(true);
-            httpConn.setConnectTimeout(HttpUtils.DEFALT_TIMEOUT);
-            httpConn.setReadTimeout(HttpUtils.DEFALT_TIMEOUT);
+            httpConn.setConnectTimeout(HttpUtils.DEFALT_TIMEOUT * 10);
+            httpConn.setReadTimeout(HttpUtils.DEFALT_TIMEOUT * 10);
 
             // get response.
             InputStream is = httpConn.getInputStream();
