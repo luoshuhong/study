@@ -39,6 +39,7 @@ public class Test {
 		try {
 			bw.write(r);
 			bw.newLine();
+			bw.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -63,17 +64,17 @@ public class Test {
     		br.close();
     		
     		//调用mongo
-    		for (String productId : list) {
+    		for (String record : list) {
     			while (((ThreadPoolExecutor) businessDealPool).getActiveCount() >= 48) {
 					Thread.sleep(500);
 				}
     			bw.flush();
-    			businessDealPool.execute(new MyThread(mongo, productId));
+    			businessDealPool.execute(new MyThread(mongo, record.split("=")[0], record.split("=")[1]));
     		}
     		
-    		
-    		Thread.sleep(1000 * 60);
-    		bw.flush();
+//    		Thread.sleep(1000 * 60);
+//    		bw.flush();
+    		System.out.println("---end...");
     		
             
         } catch (UnknownHostException e) {
@@ -84,37 +85,19 @@ public class Test {
     }
 	
 	
-	public static void update(String productId) throws Exception {
-		Mongo mongo = new Mongo("192.168.10.66", 27017);
-    	DB db = mongo.getDB("trade");
-		db.authenticate("admin", "admin123456".toCharArray());
-		DBCollection collection = db.getCollection("product_detail");
-		DBObject query = new BasicDBObject();
-		query.put("_id", new ObjectId("55b204f0e4b0ac2afb9ea94e"));
-
-		DBObject obj = collection.findOne(query);
-		obj.put("updateStatus", 0);
-		analyzeHTML(obj.get("detailContent").toString());
-		
-		collection.update(query, obj);
-	}
-	
-	
-	private static void analyzeHTML(String content) {
-		Document doc = Jsoup.parse(content);
-		Elements imgs = doc.select("img");
-		List<Element> toBeRemoved = new ArrayList<Element>();// 将要删除的数据集
-		Set<String> imgUrlStringSet = new HashSet<String>();// 正确的图片的src集合
-		for (Element e : imgs) {
-			// 先移除宽高属性
-			e.removeAttr("width");
-			e.removeAttr("height");
-			String src = e.attr("src");
-			imgUrlStringSet.add(src);
-		}
-		System.out.println(imgUrlStringSet);
-		System.out.println(toBeRemoved);
-	}
+//	public static void update(String productId) throws Exception {
+//		Mongo mongo = new Mongo("192.168.10.66", 27017);
+//    	DB db = mongo.getDB("trade");
+//		db.authenticate("admin", "admin123456".toCharArray());
+//		DBCollection collection = db.getCollection("product_detail");
+//		DBObject query = new BasicDBObject();
+//		query.put("_id", new ObjectId("55b204f0e4b0ac2afb9ea94e"));
+//
+//		DBObject obj = collection.findOne(query);
+//		obj.put("updateStatus", 0);
+//		
+//		collection.update(query, obj);
+//	}
 }
 
 
@@ -125,27 +108,23 @@ class MyThread extends Thread {
      
      
 	String productId;
-	public MyThread(Mongo mongo, String productId) {
+	String id;
+	public MyThread(Mongo mongo, String productId, String id) {
 		this.db = mongo.getDB("trade");
 		db.authenticate("trade_write", "1WM6df680WFI4227b2ba10ab".toCharArray());
 		collection = db.getCollection("product_detail");
 		this.productId = productId;
+		this.id = id;
 	}
 	@Override
 	public void run() {
 		DBObject obj = new BasicDBObject();
-		obj.put("productId", productId);
-//		DBObject result = collection.findOne(obj);
-//		System.out.println(productId + " ; status="  + result.get("updateStatus").toString());
-//		Test.put(productId + " ; status="  + result.get("updateStatus").toString());
+		obj.put("_id", new ObjectId(this.id));
+		DBObject result = collection.findOne(obj);
 		
-		DBCursor cursor = collection.find(obj).sort(new BasicDBObject("updateTime",-1));
-//		List<DBObject> list = cursor.toArray();
-//        System.out.println(list.size());//list的长度
-//        for (DBObject bdo : list) {
-//        	System.out.println(productId + " ; status="  + bdo.get("updateStatus").toString() + ", updateTime=" + bdo.get("updateTime"));
-//        }
-		DBObject firstObj = cursor.toArray().get(0);
-		Test.put(productId + " ; status="  + firstObj.get("updateStatus").toString());
+//		DBCursor cursor = collection.find(obj).sort(new BasicDBObject("updateTime",-1));
+//		DBObject firstObj = cursor.toArray().get(0);
+		
+		Test.put(productId + ", " + id +  " ; status="  + result.get("updateStatus").toString());
 	}
 }

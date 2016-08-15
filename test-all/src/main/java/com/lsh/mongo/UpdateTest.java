@@ -29,8 +29,8 @@ public class UpdateTest {
 	
 	public static void main(String[] args) {
 		try {
-			Mongo mongo = new Mongo("192.168.10.66", 27017);
-//			Mongo mongo = new Mongo("119.254.161.43", 27027);
+//			Mongo mongo = new Mongo("192.168.10.66", 27017);
+			Mongo mongo = new Mongo("119.254.161.43", 27027);
             //读文件
             List<String> list = new ArrayList<String>();
     		BufferedReader br = new BufferedReader(new FileReader("D:/product.txt"));
@@ -44,14 +44,14 @@ public class UpdateTest {
     		br.close();
     		
     		
-    		new MyThread1(mongo, "").start();
+//    		new MyThread1(mongo, "").start();
     		//调用mongo
-//    		for (String productId : list) {
-//    			while (((ThreadPoolExecutor) businessDealPool).getActiveCount() >= 48) {
-//					Thread.sleep(500);
-//				}
-//    			businessDealPool.execute(new MyThread1(mongo, productId));
-//    		}
+    		for (String productId : list) {
+    			while (((ThreadPoolExecutor) businessDealPool).getActiveCount() >= 48) {
+					Thread.sleep(500);
+				}
+    			businessDealPool.execute(new MyThread1(mongo, productId));
+    		}
     		
     		System.out.println("----");
         } catch (UnknownHostException e) {
@@ -68,8 +68,8 @@ class MyThread1 extends Thread {
 	String productId;
 	public MyThread1(Mongo mongo, String productId) {
 		this.db = mongo.getDB("trade");
-//		db.authenticate("trade_write", "1WM6df680WFI4227b2ba10ab".toCharArray());
-		db.authenticate("admin", "admin123456".toCharArray());
+		db.authenticate("trade_write", "1WM6df680WFI4227b2ba10ab".toCharArray());
+//		db.authenticate("admin", "admin123456".toCharArray());
 		collection = db.getCollection("product_detail");
 		this.productId = productId;
 	}
@@ -77,14 +77,16 @@ class MyThread1 extends Thread {
 	public void run() {
 		DBObject query = new BasicDBObject();
 //		query.put("productId", productId);
-		query.put("productId", "ze150413105403000743");
-		query.put("updateStatus", 4);
+		query.put("_id", new ObjectId(productId));
+//		query.put("productId", "ze150413105403000743");
+//		query.put("updateStatus", 4);
 		
-		DBCursor cursor = collection.find(query).sort(new BasicDBObject("updateTime",-1));
-		DBObject firstObj = cursor.toArray().get(0);
-		if (null == firstObj) {
-			return;
-		}
+//		DBCursor cursor = collection.find(query).sort(new BasicDBObject("updateTime",-1));
+//		DBObject firstObj = cursor.toArray().get(0);
+//		if (null == firstObj) {
+//			return;
+//		}
+		DBObject firstObj = collection.findOne(query);
 		
 		firstObj.put("updateStatus", 1);
 //		firstObj.put("updateTime", new Date());

@@ -15,7 +15,7 @@ public class CuratorClient {
 	private static CuratorFramework client;
 	
 	static {
-	String serverIp = "192.168.10.66:2181,192.168.10.57:2181,192.168.10.58:2181";
+	String serverIp = "xxx:2181,xxx:2181,xxx:2181";
 		client = CuratorFrameworkFactory
 				.builder()
 				.connectString(serverIp)
