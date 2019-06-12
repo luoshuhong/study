@@ -5,7 +5,6 @@ import com.zhe800.shell.annotation.HttpShell;
 /**
  * 使用注解测试 httpshell
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年5月15日
  *
  */

@@ -15,7 +15,6 @@ import org.restlet.resource.ResourceException;
 /**
  * 主测试类
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月27日
  *
  */

@@ -5,7 +5,6 @@ import com.zhe800.shell.AbstractResource;
 /**
  * 
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月30日
  *
  */

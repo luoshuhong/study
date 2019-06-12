@@ -10,7 +10,6 @@ import java.net.URLConnection;
 /**
  * 测试客户端
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月30日
  *
  */

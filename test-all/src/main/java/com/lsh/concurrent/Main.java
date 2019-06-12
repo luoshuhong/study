@@ -6,7 +6,6 @@ import java.util.concurrent.Executors;
 /**
  * 主测试方法
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月26日
  *
  */

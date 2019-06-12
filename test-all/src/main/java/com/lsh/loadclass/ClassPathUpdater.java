@@ -10,7 +10,6 @@ import java.net.URLClassLoader;
 /**
  * 将指定的 URL路径添加到classpath中
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月24日
  *
  */

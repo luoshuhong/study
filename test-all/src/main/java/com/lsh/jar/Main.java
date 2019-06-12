@@ -5,7 +5,6 @@ import java.io.IOException;
 /**
  * 测试主类
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月25日
  *
  */

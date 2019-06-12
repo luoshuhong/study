@@ -3,7 +3,6 @@ package com.lsh.concurrent;
 /**
  * 测试线程
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月26日
  *
  */

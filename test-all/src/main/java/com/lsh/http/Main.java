@@ -13,7 +13,6 @@ import java.net.URLConnection;
 /**
  * 
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年6月4日
  *
  */

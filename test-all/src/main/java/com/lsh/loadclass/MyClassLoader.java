@@ -14,7 +14,6 @@ import java.util.jar.Manifest;
 /**
  * 
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月24日
  *
  */

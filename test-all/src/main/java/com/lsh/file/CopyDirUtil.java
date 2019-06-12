@@ -10,7 +10,6 @@ import java.io.IOException;
  * 1.建立目的目录。 2.遍历源目录。 3.遍历过程中，创建文件或者文件夹。 
  * 原理：其实就是改变了源文件或者目录的目录头。
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月24日
  *
  */

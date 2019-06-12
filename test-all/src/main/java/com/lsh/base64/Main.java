@@ -3,7 +3,6 @@ package com.lsh.base64;
 /**
  * 
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年4月2日
  *
  */

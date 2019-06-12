@@ -15,7 +15,6 @@ import org.restlet.resource.ServerResource;
 /**
  * 资源类 相当于 servlet
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月27日
  *
  */

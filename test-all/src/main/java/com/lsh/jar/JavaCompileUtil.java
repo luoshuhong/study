@@ -18,7 +18,6 @@ import javax.tools.ToolProvider;
 /**
  * java 文件 编译 打包工具类
  * @author Luoshuhong
- * @Company zhe800.com
  * 2015年3月25日
  *
  */
